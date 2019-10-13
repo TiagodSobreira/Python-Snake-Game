@@ -1,0 +1,57 @@
+#jogo da cobrinha 
+#duas classes: cobra e cubo
+import pygame
+import random
+
+def drawGrid(width, rows, surface):
+    sizeBtwn = width // rows
+    x = 0
+    y = 0
+    for l in range(rows):
+        x = x + sizeBtwn
+        y = y + sizeBtwn
+
+        pygame.draw.line(surface, (255, 255, 255), (x, 0), (x,width))
+        pygame.draw.line(surface, (255, 255, 255),(0,y), (width,y))
+
+def redrawthegameWindow():
+    win.fill((0,0,0))
+    win.blit(bg,(0,0))
+    pygame.draw.rect(win, (255,0,0), (x, y, width//rows, width//rows))
+    pygame.display.update()
+
+#carregando imagem de fundo do jogo    
+bg = pygame.image.load('./Downloads/Escritório_FEA.dev/Game/bg.jpg')
+vel = 1 
+rows = 20  
+width = 500
+height = 20
+widght = 20
+x = random.randint(0,460)
+y = random.randint(0,460)
+#iniciando pygame
+pygame.init()
+#criando janela do jogo
+win = pygame.display.set_mode((width,width))
+#criando título para essa janela 
+pygame.display.set_caption("Snake game in python")
+
+#loop principal onde ocorre o jogo
+finished = False
+while finished == False:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+    keys = pygame.key.get_pressed()
+    
+    if keys[pygame.K_LEFT]:
+        x -= vel
+    if keys[pygame.K_RIGHT]:
+        x += vel
+    if keys[pygame.K_UP]:
+        y -= vel
+    if keys[pygame.K_DOWN]:
+        y += vel
+    redrawthegameWindow()
+#saindo do pygame
+pygame.quit()
