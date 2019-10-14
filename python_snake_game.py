@@ -66,6 +66,16 @@ while True:
         snake[0] = (snake[0][0] + 5, snake[0][1])
     if my_direction == LEFT:
         snake[0] = (snake[0][0] - 5 , snake[0][1])
+        
+    for pos in snake:
+        if (pos[0] == 600) or (pos[1] == 0):
+            pygame.quit()
+            print("Sua pontuação foi", len(snake) - 3)
+            
+        if (pos[1] == 600) or (pos[1] == 0):
+            pygame.quit()
+            print("Sua pontuação foi", len(snake) - 3)
+    
     
     screen.fill((0,0,0))
     screen.blit(apple, apple_pos)
